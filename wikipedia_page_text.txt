@@ -1,0 +1,630 @@
+
+
+
+
+Beautiful Soup (HTML parser) - Wikipedia
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Jump to content
+
+
+
+
+
+
+
+Main menu
+
+
+
+
+
+Main menu
+move to sidebar
+hide
+
+
+
+		Navigation
+	
+
+
+Main pageContentsCurrent eventsRandom articleAbout WikipediaContact us
+
+
+
+
+
+		Contribute
+	
+
+
+HelpLearn to editCommunity portalRecent changesUpload fileSpecial pages
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Search
+
+
+
+
+
+
+
+
+
+
+
+Search
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Appearance
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Donate
+
+Create account
+
+Log in
+
+
+
+
+
+
+
+
+Personal tools
+
+
+
+
+
+Donate Create account Log in
+
+
+
+
+
+		Pages for logged out editors learn more
+
+
+
+ContributionsTalk
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Contents
+move to sidebar
+hide
+
+
+
+
+(Top)
+
+
+
+
+
+1
+History
+
+
+
+
+Toggle History subsection
+
+
+
+
+
+1.1
+Versions
+
+
+
+
+
+
+
+
+
+
+2
+Usage
+
+
+
+
+Toggle Usage subsection
+
+
+
+
+
+2.1
+Code example
+
+
+
+
+
+
+
+
+
+
+3
+See also
+
+
+
+
+
+
+
+
+4
+References
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Toggle the table of contents
+
+
+
+
+
+
+
+Beautiful Soup (HTML parser)
+
+
+
+11 languages
+
+
+
+
+বাংলাБеларускаяDeutschEspañolFrançais한국어日本語Shqipதமிழ்Українська中文
+
+Edit links
+
+
+
+
+
+
+
+
+
+
+
+ArticleTalk
+
+
+
+
+
+English
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ReadEditView history
+
+
+
+
+
+
+
+Tools
+
+
+
+
+
+Tools
+move to sidebar
+hide
+
+
+
+		Actions
+	
+
+
+ReadEditView history
+
+
+
+
+
+		General
+	
+
+
+What links hereRelated changesUpload filePermanent linkPage informationCite this pageGet shortened URLDownload QR code
+
+
+
+
+
+		Print/export
+	
+
+
+Download as PDFPrintable version
+
+
+
+
+
+		In other projects
+	
+
+
+Wikidata item
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Appearance
+move to sidebar
+hide
+
+
+
+
+
+
+
+
+
+
+From Wikipedia, the free encyclopedia
+
+
+Python HTML/XML parser
+For other uses, see Beautiful Soup.
+Beautiful SoupOriginal author(s)Leonard RichardsonInitial release2004 (2004)Stable release4.12.3[1] 
+   / 17 January 2024; 13 months ago (17 January 2024)
+Repositorycode.launchpad.net/beautifulsoup/ 
+Written inPythonPlatformPythonTypeHTML parser library, Web scrapingLicensePython Software Foundation License (Beautiful Soup 3)MIT License (versions 4 and up)[2]Websitewww.crummy.com/software/BeautifulSoup/
+Beautiful Soup is a Python package for parsing HTML and XML documents, including those with malformed markup. It creates a parse tree for documents that can be used to extract data from HTML,[3] which is useful for web scraping.[2][4]
+
+
+History[edit]
+Beautiful Soup was started in 2004 by Leonard Richardson.[citation needed] It takes its name from the poem Beautiful Soup from Alice's Adventures in Wonderland[5] and is a reference to the term "tag soup" meaning poorly-structured HTML code.[6] Richardson continues to contribute to the project,[7] which is additionally supported by paid open-source maintainers from the company Tidelift.[8]
+
+Versions[edit]
+Beautiful Soup 3 was the official release line of Beautiful Soup from May 2006 to March 2012. The current release is Beautiful Soup 4.x.
+In 2021, Python 2.7 support was retired and the release 4.9.3 was the last to support Python 2.7.[9]
+
+Usage[edit]
+Beautiful Soup represents parsed data as a tree which can be searched and iterated over with ordinary Python loops.[10]
+
+Code example[edit]
+The example below uses the Python standard library's urllib[11] to load Wikipedia's main page, then uses Beautiful Soup to parse the document and search for all links within.
+
+#!/usr/bin/env python3
+# Anchor extraction from HTML document
+from bs4 import BeautifulSoup
+from urllib.request import urlopen
+
+with urlopen("https://en.wikipedia.org/wiki/Main_Page") as response:
+    soup = BeautifulSoup(response, "html.parser")
+    for anchor in soup.find_all("a"):
+        print(anchor.get("href", "/"))
+
+Another example is using the Python requests library[12] to get divs on a URL.
+
+import requests
+from bs4 import BeautifulSoup
+
+url = "https://wikipedia.com"
+response = requests.get(url)
+soup = BeautifulSoup(response.text, "html.parser")
+headings = soup.find_all("div")
+
+for heading in headings:
+    print(heading.text.strip())
+
+See also[edit]
+Comparison of HTML parsers
+jsoup
+Nokogiri
+References[edit]
+
+
+^ "Changelog". Retrieved 18 January 2024.
+
+^ a b "Beautiful Soup website". Retrieved 18 April 2012. Beautiful Soup is licensed under the same terms as Python itself
+
+^ Hajba, Gábor László (2018), Hajba, Gábor László (ed.), "Using Beautiful Soup", Website Scraping with Python: Using BeautifulSoup and Scrapy, Apress, pp. 41–96, doi:10.1007/978-1-4842-3925-4_3, ISBN 978-1-4842-3925-4
+
+^ Python, Real. "Beautiful Soup: Build a Web Scraper With Python – Real Python". realpython.com. Retrieved 2023-06-01.
+
+^ makcorps (2022-12-13). "BeautifulSoup tutorial: Let's Scrape Web Pages with Python". Retrieved 2024-01-24.
+
+^ "Python Web Scraping". Udacity. 2021-02-11. Retrieved 2024-01-24.
+
+^ "Code : Leonard Richardson". Launchpad. Retrieved 2020-09-19.
+
+^ Tidelift. "beautifulsoup4 | pypi via the Tidelift Subscription". tidelift.com. Retrieved 2020-09-19.
+
+^ Richardson, Leonard (7 Sep 2021). "Beautiful Soup 4.10.0". beautifulsoup. Google Groups. Retrieved 27 September 2022.
+
+^ "How To Scrape Web Pages with Beautiful Soup and Python 3 | DigitalOcean". www.digitalocean.com. Retrieved 2023-06-01.
+
+^ Python, Real. "Python's urllib.request for HTTP Requests – Real Python". realpython.com. Retrieved 2023-06-01.
+
+^ Blog, SerpApi (5 March 2024). "Beautiful Soup: Web Scraping with Python". serpapi.com. Retrieved 2024-06-27.
+
+
+
+
+
+
+Retrieved from "https://en.wikipedia.org/w/index.php?title=Beautiful_Soup_(HTML_parser)&oldid=1273692931"
+Categories: Python (programming language) librariesSoftware using the MIT licenseHTML parsersXML parsersHidden categories: Articles with short descriptionShort description matches WikidataAll articles with unsourced statementsArticles with unsourced statements from May 2024
+
+
+
+
+
+
+ This page was last edited on 3 February 2025, at 15:23 (UTC).
+Text is available under the Creative Commons Attribution-ShareAlike 4.0 License;
+additional terms may apply. By using this site, you agree to the Terms of Use and Privacy Policy. Wikipedia® is a registered trademark of the Wikimedia Foundation, Inc., a non-profit organization.
+
+
+Privacy policy
+About Wikipedia
+Disclaimers
+Contact Wikipedia
+Code of Conduct
+Developers
+Statistics
+Cookie statement
+Mobile view
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Search
+
+
+
+
+
+
+
+
+
+
+
+
+
+Search
+
+
+
+
+
+
+
+
+
+Toggle the table of contents
+
+
+
+
+
+
+
+Beautiful Soup (HTML parser)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+11 languages
+
+
+Add topic
+
+
+
+
+
+
+
+
+
+
+
+
+
+
